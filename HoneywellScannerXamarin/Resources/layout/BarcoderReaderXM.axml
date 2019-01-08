@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:weightSum="3">
+    <ScrollView
+        android:minWidth="25px"
+        android:minHeight="25px"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/linearLayout1"
+        android:layout_weight="2">
+        <TextView
+            android:text="Press SCAN"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView1"
+            android:layout_margin="6pt"
+            android:singleLine="false"
+            android:editable="true"
+            android:minHeight="12pt"
+            android:minLines="1" />
+    </ScrollView>
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:gravity="bottom">
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:weightSum="2"
+            android:gravity="center">
+            <Button
+                android:text="SCAN"
+                android:layout_width="80pt"
+                android:layout_height="wrap_content"
+                android:id="@+id/btnStartAPI"
+                android:textSize="12pt"
+                android:layout_weight="1" />
+            <Button
+                android:text="STOP"
+                android:layout_width="80pt"
+                android:layout_height="wrap_content"
+                android:id="@+id/btnStopAPI"
+                android:textSize="12pt"
+                android:layout_weight="1" />
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>
