@@ -167,7 +167,7 @@ namespace HoneywellScannerXamarin
             public override string ToString()
             {
                 
-                string s = data + "\n" + timestamp.ToLongTimeString() + "\n" + symbologyType.ToString() + "\n" + symbologyName +"\n";
+                string s = data + "\n" +myLog.strToHexString(data)+"\n" + timestamp.ToLongTimeString() + "\n" + symbologyType.ToString() + "\n" + symbologyName +"\n";
                 return s;
             }
         }

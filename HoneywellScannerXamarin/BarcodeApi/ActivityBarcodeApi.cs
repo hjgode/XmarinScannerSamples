@@ -47,9 +47,12 @@ namespace HoneywellScannerXamarin
         private void BarcodeReader_onBarcodeReadEvent(BarcodeReaderApi.BarcodeReadEventArgs e)
         {
             myLog.doLog("OnBarcode: " + e.data);
+            myLog.doLog("OnBarcode: " + myLog.strToHexString( e.data ));
             RunOnUiThread(() => text.Text = e.ToString()
             );
         }
+
+
 
         void stopReader()
         {
@@ -57,6 +60,7 @@ namespace HoneywellScannerXamarin
             {
                 BarcodeReader.onBarcodeReadEvent -= BarcodeReader_onBarcodeReadEvent;
                 BarcodeReader.Dispose();
+                BarcodeReader = null;
             }
         }
         protected override void OnPause()

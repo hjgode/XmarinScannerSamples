@@ -156,7 +156,7 @@ namespace HoneywellScannerXamarin
                         byte[] dataBytes = intent.GetByteArrayExtra("dataBytes");
                         String dataBytesStr = "";
                         if (dataBytes != null && dataBytes.Length > 0)
-                            dataBytesStr = bytesToHexString(dataBytes);
+                            dataBytesStr = myLog.bytesToHexString(dataBytes);
                         String timestamp = intent.GetStringExtra("timestamp");
                         String text = String.Format(
                                 "Data:{0}\n" +
@@ -205,24 +205,10 @@ namespace HoneywellScannerXamarin
             }
             public override string ToString()
             {
-                string binstr = bytesToHexString(this.dataBytes);
+                string binstr = myLog.bytesToHexString(this.dataBytes);
                 string s = data+"\n"+binstr+"\n"+timestamp+"\n"+ aimID + "\n" + charSet + "\n" + codeId;
                 return s;
             }
-        }
-        private static String bytesToHexString(byte[] arr)
-        {
-            String s = "[]";
-            if (arr != null)
-            {
-                s = "[";
-                for (int i = 0; i < arr.Length; i++)
-                {
-                    s += "0x" + arr[i].ToString("x2") + ", ";// + Integer.toHexString(arr[i]) + ", ";
-                }
-                s = s.Substring(0, s.Length - 2) + "]";
-            }
-            return s;
         }
     }
 }
