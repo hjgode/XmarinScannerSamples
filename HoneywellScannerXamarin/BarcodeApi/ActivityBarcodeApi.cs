@@ -10,6 +10,10 @@ using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 
+// https://github.com/ilopez/GS1Parser
+using GS1Parser;
+
+
 namespace HoneywellScannerXamarin
 {
     [Activity(Label = "ActivityBarcodeApi", MainLauncher = false)]
@@ -47,8 +51,23 @@ namespace HoneywellScannerXamarin
         private void BarcodeReader_onBarcodeReadEvent(BarcodeReaderApi.BarcodeReadEventArgs e)
         {
             myLog.doLog("OnBarcode: " + e.data);
-            myLog.doLog("OnBarcode: " + myLog.strToHexString( e.data ));
-            RunOnUiThread(() => text.Text = e.ToString()
+            //is GS1?
+            try
+            {
+                StringBuilder sb = new StringBuilder();
+                Dictionary<GS1.AII, String> dict = GS1Parser.GS1.Parse(e.data, true);
+                foreach(KeyValuePair<GS1.AII, String> entry in dict)
+                {
+                    sb.Append(entry.Key.ToString() + ": " + entry.Value+"\r\n");
+                    e.data = sb.ToString();
+                }
+            }catch(Exception ex)
+            {
+                myLog.doLog("OnBarcode: " + myLog.strToHexString(e.data));
+                System.Diagnostics.Debug.WriteLine("Exception in :" + ex.Message);
+            }
+
+            RunOnUiThread(() => text.Text = e.data
             );
         }
 

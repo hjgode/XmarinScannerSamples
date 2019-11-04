@@ -134,9 +134,10 @@ namespace HoneywellScannerXamarin
         private void MBarcodeReader_BarcodeDataReady(object sender, BarcodeDataArgs e)
         {
             myLog.doLog("MBarcodeReader_BarcodeDataReady: >" + e.Data + "<");
+            myLog.doLog("MBarcodeReader_BarcodeDataReady: " + myLog.strToHexString(e.Data));
             ScanCount++;
             //Changed Check there is a registered scan event
-                myLog.doLog("MBarcodeReader_BarcodeDataReady: calling Scan_Result_Event...");
+            myLog.doLog("MBarcodeReader_BarcodeDataReady: calling Scan_Result_Event...");
             onBarcodeRead(new BarcodeReadEventArgs(e.Data, e.TimeStamp, e.SymbologyType, e.SymbologyName));
         }
 
